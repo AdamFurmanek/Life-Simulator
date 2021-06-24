@@ -134,6 +134,7 @@ public class CityGenerator : MonoBehaviour
         if (IsRoad(x, z))
             connectedRoads.Add(new Vector2Int(x, z));
     }
+
     bool IsRoad(int x, int z)
     {
         if (!InBounds(x, z))
@@ -267,7 +268,28 @@ public class CityGenerator : MonoBehaviour
         if (plots.Count > 0)
         {
             Vector2Int plot = plots[Random.Range(0, plots.Count)];
-            Instantiate(Building, new Vector3((plot.x - mapX / 2) * scaleX, 0, (plot.y - mapZ / 2) * scaleZ), Quaternion.Euler(0, 0, 0));
+            int[] offset = new int[2];
+
+            do
+            {
+                offset[0] = 0;
+                offset[1] = 0;
+                offset[Random.Range(0, 2)] = (Random.Range(0, 2) == 0) ? 1 : -1;
+                Debug.Log(offset[0] + "  " + offset[1]);
+            }  while (!IsRoad(plot.x + offset[0], plot.y + offset[1]));
+
+            float rotation = 0;
+            if(offset[0] == 1 && offset[1] == 0)
+                rotation = 270;
+            else if (offset[0] == 0 && offset[1] == 1)
+                rotation = 180;
+            else if (offset[0] == -1 && offset[1] == 0)
+                rotation = 90;
+            else if (offset[0] == 0 && offset[1] == -1)
+                rotation = 0;
+
+            map[plot.x, plot.y] = 2;
+            Instantiate(Building, new Vector3((plot.x - mapX / 2) * scaleX, 0, (plot.y - mapZ / 2) * scaleZ), Quaternion.Euler(0, rotation, 0));
         }
 
     }
