@@ -3,14 +3,21 @@ using UnityEngine.AI;
 
 public class Human : MonoBehaviour
 {
-    public NavMeshAgent agent;
+    private NavMeshAgent agent;
+    private GameObject human, car;
+    public Material blue, pink;
+    private bool haveCar;
+    private bool woman;
+
     bool done = false;
-    public GameObject human, car;
 
     private void Start()
     {
-        agent = gameObject.GetComponent<NavMeshAgent>();
-
+        agent = GetComponent<NavMeshAgent>();
+        human = transform.Find("Body").gameObject;
+        car = transform.Find("Car").gameObject;
+        SetCar(true);
+        SetGender(true);
     }
 
     private void Update()
@@ -39,12 +46,43 @@ public class Human : MonoBehaviour
                 human.SetActive(true);
                 car.SetActive(false);
             }
-            else if(index == 3)
+            else if(index == 3 && haveCar)
             {
                 human.SetActive(false);
                 car.SetActive(true);
             }
 
+        }
+
+    }
+
+    private void SetCar(bool haveCar)
+    {
+        agent.areaMask = 0 | (1 << 4) | (1 << 5);
+        this.haveCar = haveCar;
+        if (haveCar)
+        {
+            agent.areaMask = agent.areaMask | (1 << 3);
+        }
+    }
+
+    private void SetGender(bool woman)
+    {
+        this.woman = woman;
+        if (woman)
+        {
+            
+            var renderers = human.GetComponentsInChildren<Renderer>();
+            for (int i = 0; i < renderers.Length; i++)
+            {
+                renderers[i].material = pink;
+            }
+            renderers = car.GetComponentsInChildren<Renderer>();
+            for (int i = 0; i < renderers.Length; i++)
+            {
+                renderers[i].material = pink;
+            }
+            
         }
     }
 

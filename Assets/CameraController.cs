@@ -4,11 +4,16 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    public Camera camera;
+    private Camera camera;
+    private GameObject trackedObject;
     public float zoomSensitivity, moveSensitivity, rotationSensitivity;
-    public GameObject trackedObject;
 
-    void Update()
+    private void Start()
+    {
+        camera = transform.Find("Camera").gameObject.GetComponent<Camera>();
+    }
+
+    private void Update()
     {
         Vector3 newPosition = camera.transform.localPosition + Vector3.down * Input.GetAxis("Mouse ScrollWheel") * Time.deltaTime * zoomSensitivity;
         newPosition.y = Mathf.Clamp(newPosition.y, 2, 200);
@@ -47,7 +52,6 @@ public class CameraController : MonoBehaviour
             newRotation.x = Mathf.Clamp(newRotation.x, 270, 359);
 
             transform.localEulerAngles = newRotation;
-
 
         }
     }

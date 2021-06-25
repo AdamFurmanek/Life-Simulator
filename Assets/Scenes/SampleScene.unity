@@ -153,9 +153,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 230c85f29e69fae4c81ef25733ddf4d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  agent: {fileID: 0}
-  human: {fileID: 703366674}
-  car: {fileID: 1047064529}
+  blue: {fileID: 2100000, guid: 94578b188fcba0543be4674ca23cd696, type: 2}
+  pink: {fileID: 2100000, guid: bc103b278af80a34997b91bebeb26c39, type: 2}
 --- !u!195 &99773806
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -207,7 +206,7 @@ GameObject:
   - component: {fileID: 198256823}
   - component: {fileID: 198256822}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: Cube1
   m_TagString: Human
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -326,7 +325,6 @@ MonoBehaviour:
   CrossSegment: {fileID: 5766369529351832421, guid: aca96647e079522468d63855b3087e24, type: 3}
   Building: {fileID: 4581897975150779521, guid: 9a527ccc92c7fa44292ebef307b20e90, type: 3}
   RoadMesh: {fileID: 1672565813}
-  SidewalkMesh: {fileID: 0}
 --- !u!4 &208631065
 Transform:
   m_ObjectHideFlags: 0
@@ -434,7 +432,7 @@ GameObject:
   m_Component:
   - component: {fileID: 703366675}
   m_Layer: 0
-  m_Name: Human
+  m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -624,11 +622,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0c4f38b008cb0746a80f696ac20a2ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camera: {fileID: 531061519}
   zoomSensitivity: 400
   moveSensitivity: 40
   rotationSensitivity: 40
-  trackedObject: {fileID: 0}
 --- !u!1 &1178713883
 GameObject:
   m_ObjectHideFlags: 0
@@ -642,7 +638,7 @@ GameObject:
   - component: {fileID: 1178713886}
   - component: {fileID: 1178713885}
   m_Layer: 0
-  m_Name: Cube (1)
+  m_Name: Cube2
   m_TagString: Human
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
