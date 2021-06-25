@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1740723484139771633}
   - component: {fileID: 1205980460307701107}
   - component: {fileID: 1483857385078265683}
-  - component: {fileID: 3104748387714339672}
+  - component: {fileID: 4370530186112363267}
   m_Layer: 0
   m_Name: Roof
   m_TagString: Untagged
@@ -97,7 +97,7 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
---- !u!114 &3104748387714339672
+--- !u!114 &4370530186112363267
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -158,12 +158,13 @@ GameObject:
   - component: {fileID: 4581897975913792854}
   - component: {fileID: 4581897975913792855}
   - component: {fileID: 4581897975913792848}
+  - component: {fileID: 8029233946013939660}
   m_Layer: 9
   m_Name: SideWalk
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 4
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &4581897975913792849
 Transform:
@@ -241,6 +242,22 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &8029233946013939660
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4581897975913792850}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 1
+  m_Area: 4
+  m_IgnoreFromBuild: 0
+  m_AffectedAgents: ffffffff
 --- !u!1 &5555419227739237266
 GameObject:
   m_ObjectHideFlags: 0
@@ -253,7 +270,7 @@ GameObject:
   - component: {fileID: 5671723930751973794}
   - component: {fileID: 5963069067628558170}
   - component: {fileID: 6179211429183298493}
-  - component: {fileID: 2022914697694677962}
+  - component: {fileID: 3659651304378368022}
   m_Layer: 0
   m_Name: Floor
   m_TagString: Untagged
@@ -337,7 +354,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &2022914697694677962
+--- !u!114 &3659651304378368022
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
