@@ -8,5 +8,6 @@ using UnityEngine;
 public class City
 {
     public static List<GameObject> Houses = new List<GameObject>();
+    public static List<GameObject> Humans = new List<GameObject>();
 }
 

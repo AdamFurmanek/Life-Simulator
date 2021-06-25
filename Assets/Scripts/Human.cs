@@ -8,25 +8,21 @@ public class Human : MonoBehaviour
     public Material blue, pink;
     private bool haveCar;
     private bool woman;
+    House house;
 
-    bool done = false;
-
-    private void Start()
+    void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         human = transform.Find("Body").gameObject;
         car = transform.Find("Car").gameObject;
-        SetCar(true);
-        SetGender(true);
+        SetCar(Random.Range(0,2) > 0);
+        SetGender(Random.Range(0, 2) > 0);
+        FindEmptyHouse();
+        agent.SetDestination(house.gameObject.transform.position);
     }
 
-    private void Update()
+    void Update()
     {
-        if (!done)
-        {
-            agent.SetDestination(City.Houses[Random.Range(0, City.Houses.Count)].transform.position);
-            done = !done;
-        }
 
         NavMeshHit navHit;
         if (NavMesh.SamplePosition(transform.position, out navHit, 1f, NavMesh.AllAreas))
@@ -56,7 +52,7 @@ public class Human : MonoBehaviour
 
     }
 
-    private void SetCar(bool haveCar)
+    void SetCar(bool haveCar)
     {
         agent.areaMask = 0 | (1 << 4) | (1 << 5);
         this.haveCar = haveCar;
@@ -66,7 +62,7 @@ public class Human : MonoBehaviour
         }
     }
 
-    private void SetGender(bool woman)
+    void SetGender(bool woman)
     {
         this.woman = woman;
         if (woman)
@@ -84,6 +80,26 @@ public class Human : MonoBehaviour
             }
             
         }
+    }
+
+    void FindEmptyHouse()
+    {
+        House house = null;
+        int tries = 0;
+        do
+        {
+            house = City.Houses[Random.Range(0, City.Houses.Count)].GetComponent<House>();
+            tries++;
+        } while (house.humans.Count > 0 && tries < 2000);
+        if (tries < 2000)
+            SetHouse(house);
+
+    }
+
+    void SetHouse(House house)
+    {
+        this.house = house;
+        house.humans.Add(this);
     }
 
 }

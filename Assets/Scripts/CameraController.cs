@@ -16,7 +16,7 @@ public class CameraController : MonoBehaviour
     private void Update()
     {
         Vector3 newPosition = camera.transform.localPosition + Vector3.down * Input.GetAxis("Mouse ScrollWheel") * Time.deltaTime * zoomSensitivity;
-        newPosition.y = Mathf.Clamp(newPosition.y, 2, 200);
+        newPosition.y = Mathf.Clamp(newPosition.y, 1, 200);
         camera.transform.localPosition = newPosition;
 
         if (trackedObject != null)

@@ -13,7 +13,7 @@ public class CityGenerator : MonoBehaviour
     public GameObject EmptySegment, EndSegment, LineSegment, TurnSegment, TSegment, CrossSegment, Building;
     public NavMeshSurface RoadMesh;
 
-    private void Start()
+    void Awake()
     {
         //Reset map to zeros.
         for (int x = 0; x < mapX; x++)
@@ -32,15 +32,13 @@ public class CityGenerator : MonoBehaviour
         map[centrumX, centrumZ-1] = 1;
         map[centrumX, centrumZ+1] = 1;
 
-        for (int i = 0; i < 1000; i++)
+        for (int i = 0; i < 100; i++)
         {
-            ExpandRoad();
-        }
-
-        for(int i = 0; i < 1000; i++)
-        {
+            for(int j = 0; j < 2; j++)
+                ExpandRoad();
             ExpandCity();
         }
+
 
         for (int x = 0; x < mapX; x++)
         {
@@ -59,7 +57,7 @@ public class CityGenerator : MonoBehaviour
         public Vector2Int rearRoad; //Only road connected to expandableRoad.
     }
 
-    private void ExpandRoad()
+    void ExpandRoad()
     {
         //Ends of the roads.
         List<ExpandableRoad> expandableRoads = new List<ExpandableRoad>();
@@ -67,7 +65,7 @@ public class CityGenerator : MonoBehaviour
         {
             for (int z = 0; z < mapZ; z++)
             {
-                if (GetSegment(x, z) == 1)
+                if (IsRoad(x, z))
                 {
                     //How many connected roads.
                     List<Vector2Int> connectedRoads = new List<Vector2Int>();
@@ -78,7 +76,7 @@ public class CityGenerator : MonoBehaviour
                     if (IsRoad(x, z - 1))
                         connectedRoads.Add(new Vector2Int(x, z - 1));
                     if (IsRoad(x, z + 1))
-                        connectedRoads.Add(new Vector2Int(x + 1, z + 1));
+                        connectedRoads.Add(new Vector2Int(x, z + 1));
 
                     //If connected with only one road, it's end of the road.
                     if (connectedRoads.Count == 1)
@@ -147,7 +145,7 @@ public class CityGenerator : MonoBehaviour
         return 0;
     }
 
-    private void ExpandCity()
+    void ExpandCity()
     {
         //Potential plots to place building.
         List<Vector2Int> plots = new List<Vector2Int>();
