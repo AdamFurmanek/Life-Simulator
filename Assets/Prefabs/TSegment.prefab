@@ -707,7 +707,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_OverrideArea: 1
-  m_Area: 4
+  m_Area: 5
   m_IgnoreFromBuild: 0
   m_AffectedAgents: ffffffff
 --- !u!1 &7728455784183517012
@@ -819,7 +819,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_OverrideArea: 1
-  m_Area: 4
+  m_Area: 5
   m_IgnoreFromBuild: 0
   m_AffectedAgents: ffffffff
 --- !u!1 &8576188667694834275
@@ -931,6 +931,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_OverrideArea: 1
-  m_Area: 4
+  m_Area: 5
   m_IgnoreFromBuild: 0
   m_AffectedAgents: ffffffff
