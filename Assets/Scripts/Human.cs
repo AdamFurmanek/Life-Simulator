@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-public class PlayerController : MonoBehaviour
+public class Human : MonoBehaviour
 {
     public NavMeshAgent agent;
     bool done = false;
