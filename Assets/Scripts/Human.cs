@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -9,6 +10,15 @@ public class Human : MonoBehaviour
     private bool haveCar;
     private bool woman;
     House house;
+    GameObject destination;
+
+    struct Task
+    {
+        public System.DateTime startDate, endDate;
+        public GameObject place;
+    }
+
+    List<Task> schedule = new List<Task>();
 
     void Start()
     {
@@ -18,7 +28,12 @@ public class Human : MonoBehaviour
         SetCar(Random.Range(0,2) > 0);
         SetGender(Random.Range(0, 2) > 0);
         FindEmptyHouse();
-        agent.SetDestination(house.gameObject.transform.position);
+
+        //Testing tasks.
+        float offset = Random.Range(0, 15);
+        schedule.Add(new Task() {startDate = new System.DateTime(0).AddMinutes(10 + offset), endDate = new System.DateTime(0).AddMinutes(20 + offset),place = house.gameObject });
+        schedule.Add(new Task() { startDate = new System.DateTime(0).AddMinutes(20 + offset), endDate = new System.DateTime(0).AddMinutes(40 + offset), place = City.houses[Random.Range(0, City.houses.Count)] });
+        schedule.Add(new Task() { startDate = new System.DateTime(0).AddMinutes(40 + offset), endDate = new System.DateTime(0).AddMinutes(60 + offset), place = City.houses[Random.Range(0, City.houses.Count)] });
     }
 
     void Update()
@@ -35,9 +50,9 @@ public class Human : MonoBehaviour
                 index++;
             }
             float areaCost = NavMesh.GetAreaCost(index);
-            agent.speed = 5 / areaCost;
+            agent.speed = 5 / areaCost * TimeController.globalSpeed;
 
-            if(index == 4)
+            if (index == 4)
             {
                 human.SetActive(true);
                 car.SetActive(false);
@@ -88,18 +103,44 @@ public class Human : MonoBehaviour
         int tries = 0;
         do
         {
-            house = City.Houses[Random.Range(0, City.Houses.Count)].GetComponent<House>();
+            house = City.houses[Random.Range(0, City.houses.Count)].GetComponent<House>();
             tries++;
         } while (house.humans.Count > 0 && tries < 2000);
         if (tries < 2000)
             SetHouse(house);
-
     }
 
     void SetHouse(House house)
     {
         this.house = house;
         house.humans.Add(this);
+    }
+
+    public void CheckTime(System.DateTime globalTime)
+    {
+        if(schedule.Count > 0)
+        {
+            while(schedule[0].endDate <= globalTime)
+            {
+                Task task = schedule[0];
+                task.startDate = task.startDate.AddDays(1);
+                task.endDate = task.endDate.AddDays(1);
+                schedule.Add(task);
+                schedule.RemoveAt(0);
+            }
+            if(schedule[0].startDate <= globalTime)
+            {
+                if (schedule[0].place != destination)
+                {
+                    destination = schedule[0].place;
+                    agent.SetDestination(schedule[0].place.transform.position);
+                }
+                else
+                {
+                    //Jeœli w budynku - wykonuj zadanie.
+                }
+            }
+        }
     }
 
 }

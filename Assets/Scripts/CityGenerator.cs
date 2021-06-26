@@ -328,7 +328,7 @@ public class CityGenerator : MonoBehaviour
 
 
         GameObject house = Instantiate(Building, new Vector3((x - mapX / 2) * scaleX, 0, (z - mapZ / 2) * scaleZ), Quaternion.Euler(0, rotation, 0));
-        City.Houses.Add(house);
+        City.houses.Add(house);
     }
 
 }

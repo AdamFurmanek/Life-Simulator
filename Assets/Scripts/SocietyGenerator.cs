@@ -10,12 +10,8 @@ public class SocietyGenerator : MonoBehaviour
     {
         for(int i = 0; i < 40; i++)
         {
-            City.Humans.Add(Instantiate(human, Vector3.zero, Quaternion.Euler(0, 0, 0)));
+            City.humans.Add(Instantiate(human, Vector3.zero, Quaternion.Euler(0, 0, 0)));
         }
     }
 
-    void Update()
-    {
-        
-    }
 }

@@ -7,7 +7,7 @@ using UnityEngine;
 
 public class City
 {
-    public static List<GameObject> Houses = new List<GameObject>();
-    public static List<GameObject> Humans = new List<GameObject>();
+    public static List<GameObject> houses = new List<GameObject>();
+    public static List<GameObject> humans = new List<GameObject>();
 }
 
