@@ -16,7 +16,7 @@ NavMeshProjectSettings:
   - name: Sidewalk
     cost: 5
   - name: Cross
-    cost: 5
+    cost: 3
   - name: 
     cost: 1
   - name: 
