@@ -20,8 +20,8 @@ public class TimeController : MonoBehaviour
     private void Update()
     {
         globalTime = globalTime.AddSeconds(Time.deltaTime * 60 * globalSpeed);
-        light.transform.eulerAngles = Vector3.right * ((globalTime.Second + globalTime.Minute * 60 + globalTime.Hour * 3600) / 60 * 360 / 1440 + 270);
-        clock.GetComponent<TextMeshProUGUI>().text = (globalTime.Hour < 10 ? "0" : "") + globalTime.Hour + ":" + (globalTime.Minute < 10 ? "0" : "") + globalTime.Minute;
+        light.transform.eulerAngles = Vector3.right * (((float)globalTime.Second + globalTime.Minute * 60 + globalTime.Hour * 3600) * 360 / 86400 + 270);
+        clock.transform.Find("Text").GetComponent<TextMeshProUGUI>().text = (globalTime.Hour < 10 ? "0" : "") + globalTime.Hour + ":" + (globalTime.Minute < 10 ? "0" : "") + globalTime.Minute;
     }
 
     IEnumerator Timer()
