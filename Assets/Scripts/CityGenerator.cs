@@ -10,7 +10,8 @@ public class CityGenerator : MonoBehaviour
     private int[,] map = new int[40, 40];
     private float scaleX = 3, scaleZ = 3;
 
-    public GameObject EmptySegment, EndSegment, LineSegment, TurnSegment, TSegment, CrossSegment, Building;
+    public GameObject EmptySegment, EndSegment, LineSegment, TurnSegment, TSegment, CrossSegment;
+    public GameObject House, Workplace, PublicSpace, ConstructionSite;
     public NavMeshSurface RoadMesh;
 
     void Awake()
@@ -326,9 +327,27 @@ public class CityGenerator : MonoBehaviour
         else if (offset[0] == 0 && offset[1] == -1)
             rotation = 0;
 
+        GameObject toSpawn = null;
+        List<GameObject> list = null;
 
-        GameObject house = Instantiate(Building, new Vector3((x - mapX / 2) * scaleX, 0, (z - mapZ / 2) * scaleZ), Quaternion.Euler(0, rotation, 0));
-        City.houses.Add(house);
+        if (City.houses.Count <= City.workplaces.Count)
+        {
+            list = City.houses;
+            toSpawn = House;
+        }
+        else if (City.workplaces.Count <= City.publicSpaces.Count)
+        {
+            list = City.workplaces;
+            toSpawn = Workplace;
+        }
+        else
+        {
+            list = City.publicSpaces;
+            toSpawn = PublicSpace;
+        }
+
+        GameObject spawned = Instantiate(toSpawn, new Vector3((x - mapX / 2) * scaleX, 0, (z - mapZ / 2) * scaleZ), Quaternion.Euler(0, rotation, 0));
+        list.Add(spawned);
     }
 
 }

@@ -158,7 +158,10 @@ MonoBehaviour:
   TurnSegment: {fileID: 6113022732856811357, guid: 346b76908c71cf5489708d40cc954251, type: 3}
   TSegment: {fileID: 984067408879349752, guid: 75bb063c8ef37234e83831680ff1b93d, type: 3}
   CrossSegment: {fileID: 5766369529351832421, guid: aca96647e079522468d63855b3087e24, type: 3}
-  Building: {fileID: 4581897975150779521, guid: 9a527ccc92c7fa44292ebef307b20e90, type: 3}
+  House: {fileID: 4581897975150779521, guid: 9a527ccc92c7fa44292ebef307b20e90, type: 3}
+  Workplace: {fileID: 4581897975150779521, guid: 6e3c7470a03b558469daa1615d4deb4e, type: 3}
+  PublicSpace: {fileID: 4581897975150779521, guid: 44d6a8594e3bc9644ab040eb5abf945b, type: 3}
+  ConstructionSite: {fileID: 4581897975150779521, guid: fa17eb95d97a1f54cb99d76d6847e3ed, type: 3}
   RoadMesh: {fileID: 1672565813}
 --- !u!4 &208631065
 Transform:
@@ -1272,7 +1275,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -150, y: 30}
+  m_AnchoredPosition: {x: -163.90002, y: 30}
   m_SizeDelta: {x: 300, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1175181069
@@ -1324,8 +1327,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 64
-  m_fontSizeBase: 64
+  m_fontSize: 48
+  m_fontSizeBase: 48
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1599,7 +1602,7 @@ Transform:
   m_GameObject: {fileID: 1346815896}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 20, y: 1, z: 20}
+  m_LocalScale: {x: 2000, y: 1, z: 2000}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
@@ -2006,7 +2009,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -150, y: -30}
+  m_AnchoredPosition: {x: -163.9, y: -30}
   m_SizeDelta: {x: 300, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1589134257
@@ -2058,8 +2061,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 64
-  m_fontSizeBase: 64
+  m_fontSize: 48
+  m_fontSizeBase: 48
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18

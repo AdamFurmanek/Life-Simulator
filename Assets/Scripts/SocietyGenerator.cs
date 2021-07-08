@@ -8,9 +8,13 @@ public class SocietyGenerator : MonoBehaviour
 
     void Start()
     {
-        for(int i = 0; i < 40; i++)
+        for(int i = 0; i < 200; i++)
         {
-            City.humans.Add(Instantiate(human, Vector3.zero, Quaternion.Euler(0, 0, 0)));
+            Building house = City.FindBuilding(BuildingType.House);
+            GameObject humanObject = Instantiate(human, house.transform.position, Quaternion.Euler(0, 0, 0));
+            humanObject.GetComponent<Human>().SetHouse(house);
+            humanObject.GetComponent<Human>().id = i;
+            City.humans.Add(humanObject);
         }
     }
 

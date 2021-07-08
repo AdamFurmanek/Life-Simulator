@@ -9,9 +9,10 @@ public class Human : MonoBehaviour
     public Material blue, pink;
     private bool haveCar;
     private bool woman;
-    Building house;
-    GameObject destination = null;
-    GameObject actualPlace = null;
+    Building house, workplace;
+    public GameObject destination = null;
+    public GameObject actualPlace = null;
+    public int id;
 
     struct Task
     {
@@ -28,13 +29,14 @@ public class Human : MonoBehaviour
         car = transform.Find("Car").gameObject;
         SetCar(Random.Range(0,2) > 0);
         SetGender(Random.Range(0, 2) > 0);
-        FindEmptyHouse();
+
+        SetWorkplace(City.FindBuilding(BuildingType.Workplace));
 
         //Testing tasks.
         float offset = Random.Range(0, 15);
-        schedule.Add(new Task() {startDate = new System.DateTime(0).AddHours(8).AddMinutes(0 + offset), endDate = new System.DateTime(0).AddHours(8).AddMinutes(200 + offset),place = house.gameObject });
-        //schedule.Add(new Task() { startDate = new System.DateTime(0).AddMinutes(20 + offset), endDate = new System.DateTime(0).AddMinutes(40 + offset), place = City.houses[Random.Range(0, City.houses.Count)] });
-        //schedule.Add(new Task() { startDate = new System.DateTime(0).AddMinutes(40 + offset), endDate = new System.DateTime(0).AddMinutes(60 + offset), place = City.houses[Random.Range(0, City.houses.Count)] });
+        schedule.Add(new Task() {startDate = new System.DateTime(0).AddHours(8).AddMinutes(0 + offset), endDate = new System.DateTime(0).AddHours(16).AddMinutes(0 + offset),place = workplace.gameObject });
+        schedule.Add(new Task() {startDate = new System.DateTime(0).AddHours(16).AddMinutes(0 + offset), endDate = new System.DateTime(0).AddHours(20).AddMinutes(0 + offset), place = City.publicSpaces[Random.Range(0, City.publicSpaces.Count)] });
+        schedule.Add(new Task() {startDate = new System.DateTime(0).AddHours(20).AddMinutes(0 + offset), endDate = new System.DateTime(0).AddHours(24 + 8).AddMinutes(0 + offset), place = house.gameObject });
     }
 
     void Update()
@@ -98,23 +100,16 @@ public class Human : MonoBehaviour
         }
     }
 
-    void FindEmptyHouse()
-    {
-        Building house = null;
-        int tries = 0;
-        do
-        {
-            house = City.houses[Random.Range(0, City.houses.Count)].GetComponent<Building>();
-            tries++;
-        } while (house.owners.Count > 0 && tries < 2000);
-        if (tries < 2000)
-            SetHouse(house);
-    }
-
-    void SetHouse(Building house)
+    public void SetHouse(Building house)
     {
         this.house = house;
         house.owners.Add(this);
+    }
+
+    public void SetWorkplace(Building workplace)
+    {
+        this.workplace = workplace;
+        workplace.owners.Add(this);
     }
 
     public void CheckTime(System.DateTime globalTime)
@@ -169,5 +164,6 @@ public class Human : MonoBehaviour
             }
         }
     }
+
 
 }

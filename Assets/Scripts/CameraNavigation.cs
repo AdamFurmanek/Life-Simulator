@@ -54,6 +54,7 @@ public class CameraNavigation : MonoBehaviour
                 if (hit.transform.CompareTag("Human"))
                 {
                     trackingInfo.gameObject.SetActive(true);
+                    trackingInfo.SetObject(hit.transform.parent.parent.gameObject);
                     trackedObjectMain = hit.transform.parent.parent.gameObject;
                     trackedObjectPreview = hit.transform.parent.parent.gameObject;
                 }
@@ -73,6 +74,9 @@ public class CameraNavigation : MonoBehaviour
     public void Center()
     {
         trackedObjectMain = trackedObjectPreview;
-        Debug.Log("lala");
+        Vector3 newPosition = camera.transform.localPosition;
+        newPosition.y = 3;
+        newPosition.y = Mathf.Clamp(newPosition.y, 1, 200);
+        camera.transform.localPosition = newPosition;
     }
 }
